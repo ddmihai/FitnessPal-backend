@@ -28,6 +28,9 @@ exports.update = (req, res, next) => {
     })
 }
 
+
+
+
 /* 
                 ---***--- 
     To be created password update with bcrypt

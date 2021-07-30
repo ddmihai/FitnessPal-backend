@@ -44,5 +44,21 @@ exports.delete = (req, res, next) => {
         if (error) throw error;
         return res.send('Day deleted!');
     })
+}
 
+
+exports.getOne = (req, res, next) => {
+   
+}
+
+
+exports.getAll = (req, res, next) => {
+    const userID = req.params.id;
+    const sql = `SELECT * FROM day WHERE userID = '${userID}'`;
+
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        
+        res.send(result);
+    })
 }

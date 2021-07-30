@@ -45,10 +45,20 @@ exports.login = (req, res, next) => {
         bcrypt.compare(req.body.password, result[0].password, function(err, results) {
             if (err)         return res.sendStatus(500);
             if (results)     return res.send({user: result, token: token});
-            if (!results)    return res.sendStatus(404);
+            if (!results)    return res.send('Wrong credentials!');
         });
        }
    })
 
 }
 
+exports.getOne = (req, res, next) => {
+    const userID = req.params.id;
+    const sql = `SELECT * FROM users WHERE userID = '${userID}'`
+
+    db.query(sql, (error, result) => {
+        if (error) throw error;
+
+        res.send(result);
+    })
+}
